@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Contrail+One|Fira+Sans+Condensed');
+
+* {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+#puzzle {
+    display: flex;
+    flex-wrap: wrap;
+    size: 100%;
+    width: 412px;
+    height: 412px;
+    border: 2px solid black;
+    background: #000; /*#020550*/
+}
+
+div[class^="row"] {
+    display: flex;
+    flex-direction: row;
+}
+
+div[class^="cell"] {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    margin: 1px;
+    padding: 10px;
+    background: -webkit-radial-gradient(#c4dcf8, #0d79d5, #67ace9); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#c4dcf8, #0d79d5, #67ace9); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#c4dcf8, #0d79d5, #67ace9); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#c4dcf8, #0d79d5, #67ace9); /* Standard syntax (#ffc695, #e5700b, #e9a867) */
+    color: whitesmoke;
+    text-shadow: 0 0 3px #111;
+    font-size: 1.5em;
+    border-radius: 5px;
+    -moz-box-shadow:    inset 0 0 10px rgba(5, 3, 2, 0.8);
+    -webkit-box-shadow: inset 0 0 10px rgba(5, 3, 2, 0.8);
+    box-shadow:         inset 0 0 10px rgba(5, 3, 2, 0.8);
+}
+
+div.empty {
+    background: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    -moz-box-shadow:    inset 0 0 0px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+    box-shadow:         inset 0 0 0px rgba(0, 0, 0, 0);
+}
+
+.dropdown-menu {
+    opacity: 0.75;    
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border: 3px solid #2d314d;
+    border-radius: 5px;
+}
+
+button.level_1 {
+    border: 2px solid #2d314d;
+}
+
+.btn-wrap-text {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.timer {
+    width: 175px;
+}
+
+.clicks {
+    width: 120px;
+}
+
+.moves {
+    width: 185px;
+}
+
+.points {
+    width: 100px;
+}
+
+.card, tr td h5.text-left {
+    color: #000;
+}
+tr {
+    line-height: 1.5em;
+    color: #ccc;
+}

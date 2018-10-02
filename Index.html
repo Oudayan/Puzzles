@@ -1,0 +1,194 @@
+<html>
+	<head>
+        <meta charset="utf-8">        
+        <meta name="author" content="Oudayan Dutta">
+        <meta name="description" content="TP1 - JavaScript">       
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Puzzles</title>
+    </head>
+    <body>
+        <header class="d-flex justify-content-center bg-inverse text-white pt-2 pb-1">
+            <h1 id="headerTitle">Puzzles Enki Bilal</h1>
+        </header>
+        <main class="container-fluid my-2">
+            <div id="gameEnd" class="modal fade mt-5" tabindex="-1" role="dialog" aria-labelledby="gameEndLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-primary" id="gameEndLabel">Puzzle complété !</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div id="gameEndPoints" class="d-flex flex-row justify-content-around">
+                            </div>
+                            <div id="newHighscores" class="my-2">
+                            </div>
+                            <div id="nameInput" class="invisible mx-1 my-2">
+                                <label for=hsName>Veuillez entrer votre nom&nbsp;:</label>
+                                <input id="hsName" name="hsName" type="text" size="50" autofocus>
+                                <p class="error"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="gameEndClose" class="btn btn-primary" data-dismiss="modal" onclick="changeLevel(1)">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+            <div class="row pt-3">
+                <div class="col-xl-8 d-flex flex-wrap justify-content-center">
+                    <div id="score" class="d-flex flex-row flex-wrap justify-content-around mb-2 w-100 text-primary">
+                        <div class="mr-auto">
+                            <button id="showHighscores" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Records</button>
+                        </div>
+                        <div class="timer mx-4 mt-3 mt-xl-1">
+                            <h4>Temps&nbsp;: <span id="time">00:00:00</span></h4>
+                        </div>
+                        <div class="clicks mx-4 mt-3 mt-xl-1">
+                            <h4>Clicks&nbsp;: <span id="clicks">0</span></h4>
+                        </div>
+                        <div class="moves mx-4 mt-3 mt-xl-1">
+                            <h4>Mouvements&nbsp;: <span id="moves">0</span></h4>
+                        </div>
+                        <div class="moves mx-4 mt-3 mt-xl-1">
+                            <h4>Points&nbsp;: <span id="points">1000</span></h4>
+                        </div>
+                        <div class="collapse w-100 mt-1" id="collapseExample">
+                            <div class="card card-block m-1">
+                                <div class="d-flex flex-row flex-wrap justify-content-between mb-2">
+                                    <h3 id="hsTitle">Puzzles Enki Bilal : Débutant (4 X 4) - Futuropolis - Chiffres affichés</h3>
+                                    <button  id="resetLevelHighscore" class="btn btn-secondary text-truncate" onclick="resetLevelHighscores()">Effacer les records</button>
+                                    <!-- <button  id="resetAllHighscore" class="btn btn-secondary text-truncate" onclick="resetAllHighscores()">Effacer TOUS les records</button> -->
+                                </div>
+                                <div id="highscores" class="m-1">
+                                    <table class="w-100">
+                                        <tr class='h4'><th>Catégorie</th><th>Nom</th><th>Temps</th><th>Clicks</th><th>Mouvements</th><th>Points</th></tr>
+                                        <tr id="hsTime" class="hs text-left"></tr>
+                                        <tr id="hsClicks" class="hs text-left"></tr>
+                                        <tr id="hsMoves" class="hs text-left"></tr>
+                                        <tr id="hsScore" class="hs text-left"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="puzzle">
+                        <!-- Structure html générée par la fonction createPuzzle() au level 1 (size = 4) :
+                        <div class="row_1">
+                            <div id="cell_1_1" class="cell">1</div>
+                            <div id="cell_1_2" class="cell">2</div>
+                            <div id="cell_1_3" class="cell">3</div>
+                            <div id="cell_1_4" class="cell">4</div>
+                        </div>
+                        <div class="row_2">
+                            <div id="cell_2_1" class="cell">5</div>
+                            <div id="cell_2_2" class="cell">6</div>
+                            <div id="cell_2_3" class="cell">7</div>
+                            <div id="cell_2_4" class="cell">8</div>
+                        </div>
+                        <div class="row_3">
+                            <div id="cell_3_1" class="cell">9</div>
+                            <div id="cell_3_2" class="cell">10</div>
+                            <div id="cell_3_3" class="cell">11</div>
+                            <div id="cell_3_4" class="cell">12</div>
+                        </div>
+                        <div class="row_4">
+                            <div id="cell_4_1" class="cell">13</div>
+                            <div id="cell_4_2" class="cell">14</div>
+                            <div id="cell_4_3" class="cell">15</div>
+                            <div id="cell_4_4" class="cell empty"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-xl-4 mt-3 mt-xl-0">
+                    <div class="d-flex flex-column mx-5 mr-xl-5">
+                        <div class="dropdown">
+                            <button id="selectImagesGroup" class="btn btn-secondary btn-block dropdown-toggle text-primary text-truncate mb-3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <strong>Autres Groupes d'Images Puzzle</strong>
+                            </button>
+                            <div id="ImagesGroupMenuItems" class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButton">
+                                <!-- Items du menu générés par la fonction createPuzzle()
+                                <button id="image_group_1" class="dropdown-item btn btn-secondary btn-block text-truncate" onclick="changeImageGroup(0, 1)">Enki Bilal - 5 niveaux/images</button>
+                                <button id="image_group_2" class="dropdown-item btn btn-secondary btn-block text-truncate" onclick="changeImageGroup(1, 1)">M. C. Escher - 5 niveaux/images</button> -->
+                            </div>
+                        </div>
+                        <div>
+                            <img id="hintImage" src="images/Enki_Bilal/Enki_Bilal_1.jpg">
+                        </div>
+                        <div class="mt-2">
+                            <button type="button" id="level1" class="btn btn-secondary btn-block text-truncate my-1 level1" onclick="changeLevel(1)">Débutant (4 X 4) - Futuropolis</button>
+                            <button type="button" id="level2" class="btn btn-secondary btn-block text-truncate my-1" onclick="changeLevel(2)">Novice (5 X 5) - Die Mauer Berlin</button>
+                            <button type="button" id="level3" class="btn btn-secondary btn-block text-truncate my-1" onclick="changeLevel(3)">Intermédiaire (6 X 6) - Foire Aux Immortels</button>
+                            <button type="button" id="level4" class="btn btn-secondary btn-block text-truncate my-1" onclick="changeLevel(4)">Avancé (7 X 7) - Exterminateur 17</button>
+                            <button type="button" id="level5" class="btn btn-secondary btn-block text-truncate my-1" onclick="changeLevel(5)">Expert (8 X 8) - 32 Décembre</button>
+                            <button type="button" id="hintNumbers" class="btn btn-secondary btn-lg btn-block text-primary text-truncate mt-3" onclick="NumbersSwitch()">Cachez les chiffres</button>
+                            <button type="button" id="start" class="btn btn-primary btn-lg btn-block text-truncate mt-3" onclick="startPuzzle()">Jouez !</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="d-flex justify-content-between bg-inverse text-white mt-4 px-5 pt-3 pb-1">
+            <button type="button" class="btn btn-secondary text-primary mb-2" data-toggle="modal" data-target="#instructions"><strong>Instructions</strong></button>
+            <div id="instructions" class="modal fade mt-5" tabindex="-1" role="dialog" aria-labelledby="instructionsLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title text-primary" id="instructionsLabel">Instructions</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-muted">
+                            <div class="mx-1 my-2">
+                                <h4>Instructions pour le jeu Puzzles&nbsp;:</h4>
+                                <p>Les puzzles sont des images découpées en morceaux sur une grille de 4 X 4 à 8 X 8, selon le niveau choisi. La dernière case du puzzle (en bas à droite) est vide. On doit cliquer sur le bouton "Jouez !" en bas à droite de l'écran pour mélanger le puzzle. L'objectif est de replacer toutes les cases à leur position originale pour compléter l'image.</p>
+                                <p>En cliquant sur les cases directement voisine à la case vide (haut, bas, gauche et droite, mais pas en diagonale) on bouge  l'emplacement de celle-ci vers la case vide.</p>
+                                <p>On peut également cliquer une case non-voisine mais dans la même rangée ou colonne que la case vide. La case cliquée "poussera" les toutes les cases entre celle-ci et la case vide vers cette dernière.</p>
+                                <h5>Groupes d'images et niveaux&nbsp;:</h5>
+                                <p>Le jeu propose plusieurs groupes d'images et niveaux. On peut accéder aux différents groupes d'images via le menu déroulant en haut à droite de la page, au dessus de l'image référence. On peut changer de niveau en cliquant sur les 5 boutons sous l'image référence.</p>
+                                <h5>Modes d'affichage&nbsp;:</h5>
+                                <p>Le jeu propose deux mode : avec les chiffre affichés sur chaque case ou avec les chiffres cachés. Cette dernière option doublera les points de départ du niveau. On peut changer le mode d'affichage des nombres via le bouton "Cachez les chiffres / Afficher les chiffres" en bas à droite de la page, au dessus du bouton "Jouez !".
+                                <br>NOTE : Le groupe d'images "Générique" ne propose pas l'option des chiffres cachés puisque ce niveau n'a pas d'images, donc serait impossible à compléter sans l'affichage des chiffres.</p>
+                                <h5>Système de pointage&nbsp;:</h5>
+                                <p>Le système de points fonctionne comme suit : 1000 points sont attribués au départ. Ce chiffre est multiplié par le niveau courant (ex: niveau 3 = 3000 points). Si jamais l'option d'afficher les chiffes est éteinte, les points de départ sont doublés (ex: niveau 3 = 6000 points). Les secondes, clicks et movements sont ensuite soustraits de ce total pour donner le nombre de points (1 seconde = -1 point, 1 click = -1 point et 1 mouvement = -1 point).</p>
+                                <h5>Records&nbsp;:</h5>
+                                <p>Le temps, le nombre de clicks, le nombre de mouvements et les points sont comptabilisés et les meilleurs de chaque catégorie sont sauvagardés en tant que record. On peut voir les records du niveau courant en cliquant sur le bouton "Records" en haut à gauche de la page.
+                                <br>Les records sont sauvegardés pour chaque groupe d'image, niveau et mode d'affichage des chiffres. Donc, pour un groupe d'images de 5 niveaux, on a 10 tableaux de records (5 niveaux X 2 modes d'affichage des chiffres), et chaque tableau contient les records des 4 catégories (temps, clicks, mouvements et points).
+                                <br>On peut effacer les records du tableau courant avec le bouton en haut à droite de la boîte des records. Ce bouton effacera les 4 catégories du niveau courant, mais pas celle des autre groupes d'images, niveaux et modes d'affichages des nombres.
+                                Lorsqu'il y a un nouveau highscore, l'usager devra entrer son nom pour faire apparaître le bouton de sauvegarde et continuer.
+                                <br>NOTE : Les records sont sauvagardés dans vos données de navigation. Si vous effacer votre historique ou jouez d'un autre navigateur ou ordinateur, les anciens records ne seront plus disponibles.
+                                </p>
+                                <h5>Amusez-vous !!!</h5>                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="instructionsClose" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+            <div class="pt-2">
+                <p>Créé par : OD1KN0B &copy; 2017</p>
+            </div>
+        </footer>
+        
+        <!-- Tableau des groupes d'images et niveaux -->
+        <script src="js/imagesGroups.js"></script>
+        <!-- Script puzzle -->
+        <script src="js/puzzle.js"></script>
+
+        <!-- Bootstrap stuff -->
+        <script src="js/jquery.slim.min.js"></script>
+        <script src="js/tether.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+
+    </body>
+</html>
